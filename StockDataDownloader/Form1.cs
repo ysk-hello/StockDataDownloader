@@ -65,6 +65,10 @@ namespace StockDataDownloader
                 _companies = reader.GetCompanies();
 
                 dataGridView1.DataSource = _companies.Where(c => c.Country == GetCheckedCountry()).ToList();
+
+                dataGridView1.Columns[nameof(Company.Country)].HeaderText = "国名";
+                dataGridView1.Columns[nameof(Company.Code)].HeaderText = "コード";
+                dataGridView1.Columns[nameof(Company.Name)].HeaderText = "会社名";
             }
             catch (Exception ex)
             {
