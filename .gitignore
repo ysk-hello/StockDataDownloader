@@ -1,0 +1,6 @@
+StockDataDownloaderTests/bin/
+StockDataDownloader/bin/
+packages/
+.vs/
+StockDataDownloader/obj/
+StockDataDownloaderTests/obj/
