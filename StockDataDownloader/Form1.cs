@@ -273,5 +273,32 @@ namespace StockDataDownloader
                 _logger.Error(ex.ToString());
             }
         }
+
+        private void yahooToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var selected = dataGridView1.SelectedRows.Cast<DataGridViewRow>().Select(r => r.DataBoundItem as Company);
+
+                foreach (var company in selected)
+                {
+                    switch (company.Country)
+                    {
+                        case Country.JAPAN:
+                            System.Diagnostics.Process.Start(string.Format(@"https://stocks.finance.yahoo.co.jp/stocks/detail/?code={0}", company.Code));
+                            break;
+                        case Country.USA:
+                            System.Diagnostics.Process.Start(string.Format(@"https://finance.yahoo.com/quote/{0}", company.Code));
+                            break;
+                        default:
+                            throw new NotSupportedException();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex.ToString());
+            }
+        }
     }
 }
