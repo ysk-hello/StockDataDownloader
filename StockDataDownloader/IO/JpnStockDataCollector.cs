@@ -118,8 +118,11 @@ namespace StockDataDownloader.IO
                 var code = list.First().Code;
                 var header = list.First().ToHeader();
 
+                var fileName = @"Japan\{0}.csv";
+                Directory.CreateDirectory(Path.GetDirectoryName(fileName));
+
                 // csv出力
-                using (var sw = new StreamWriter(string.Format("{0}.csv", code)))
+                using (var sw = new StreamWriter(string.Format(fileName, code)))
                 {
                     // ヘッダー
                     sw.WriteLine(header);

@@ -2,6 +2,7 @@
 using StockDataDownloader.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -21,10 +22,11 @@ namespace StockDataDownloader.IO
 
             try
             {
+                var fileName = string.Format(@"Usa\{0}.csv", code);
+                Directory.CreateDirectory(Path.GetDirectoryName(fileName));
+
                 using (var web = new WebClient())
                 {
-                    var fileName = string.Format("{0}.csv", code);
-
                     // csvのダウンロード
                     web.DownloadFile(url, fileName);
                 }
