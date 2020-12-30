@@ -80,8 +80,8 @@ namespace StockDataDownloader.IO
                             High = double.Parse(tds[2].TextContent),
                             Low = double.Parse(tds[3].TextContent),
                             Close = double.Parse(tds[4].TextContent),
-                            Volume = double.Parse(tds[5].TextContent),
-                            AdjClose = double.Parse(tds[6].TextContent)
+                            AdjClose = double.Parse(tds[5].TextContent),
+                            Volume = double.Parse(tds[6].TextContent)
                         });
                     }
 

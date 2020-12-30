@@ -1,6 +1,7 @@
 ﻿using StockDataDownloader.IO;
 using StockDataDownloader.Model;
 using StockDataDownloader.UI;
+using StockDataDownloader.UI.Chart;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -194,6 +195,82 @@ namespace StockDataDownloader
             {
                 e.Cancel = true;
                 MessageBox.Show("backgroundworker is busy");
+            }
+        }
+
+        private void 移動平均ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var selected = dataGridView1.SelectedRows.Cast<DataGridViewRow>().Select(r => r.DataBoundItem as Company);
+
+                foreach (var company in selected)
+                {
+                    var creator = new MovingAverageLineChartCreator(company);
+                    var form = new ChartForm(creator);
+                    form.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex.ToString());
+            }
+        }
+
+        private void 株価の分布ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var selected = dataGridView1.SelectedRows.Cast<DataGridViewRow>().Select(r => r.DataBoundItem as Company);
+
+                foreach (var company in selected)
+                {
+                    var creator = new StockDataHistgramCreator(company);
+                    var form = new ChartForm(creator);
+                    form.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex.ToString());
+            }
+        }
+
+        private void 前日比の分布ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var selected = dataGridView1.SelectedRows.Cast<DataGridViewRow>().Select(r => r.DataBoundItem as Company);
+
+                foreach (var company in selected)
+                {
+                    var creator = new DayBeforeRatioHistgramCreator(company);
+                    var form = new ChartForm(creator);
+                    form.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex.ToString());
+            }
+        }
+
+        private void 日の変化量ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var selected = dataGridView1.SelectedRows.Cast<DataGridViewRow>().Select(r => r.DataBoundItem as Company);
+
+                foreach (var company in selected)
+                {
+                    var creator = new DailyChangeHistgramCreator(company);
+                    var form = new ChartForm(creator);
+                    form.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex.ToString());
             }
         }
     }

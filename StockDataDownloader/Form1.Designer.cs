@@ -42,16 +42,21 @@
             this.表示ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.日本株ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.米国株ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.チャートToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.株価の分布ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.日当たりの変化量ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ヘルプToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.バージョン情報ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.日別ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.週別ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.月別ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.移動平均ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.前日比の分布ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -63,6 +68,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ダウンロードToolStripMenuItem,
             this.表示ToolStripMenuItem,
+            this.チャートToolStripMenuItem,
             this.ヘルプToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -85,33 +91,33 @@
             // 日別ToolStripMenuItem
             // 
             this.日別ToolStripMenuItem.Name = "日別ToolStripMenuItem";
-            this.日別ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.日別ToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.日別ToolStripMenuItem.Text = "日別";
             this.日別ToolStripMenuItem.Click += new System.EventHandler(this.日別ToolStripMenuItem_Click);
             // 
             // 週別ToolStripMenuItem
             // 
             this.週別ToolStripMenuItem.Name = "週別ToolStripMenuItem";
-            this.週別ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.週別ToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.週別ToolStripMenuItem.Text = "週別";
             this.週別ToolStripMenuItem.Click += new System.EventHandler(this.週別ToolStripMenuItem_Click);
             // 
             // 月別ToolStripMenuItem
             // 
             this.月別ToolStripMenuItem.Name = "月別ToolStripMenuItem";
-            this.月別ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.月別ToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.月別ToolStripMenuItem.Text = "月別";
             this.月別ToolStripMenuItem.Click += new System.EventHandler(this.月別ToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(147, 6);
             // 
             // ダウンロード期間ToolStripMenuItem
             // 
             this.ダウンロード期間ToolStripMenuItem.Name = "ダウンロード期間ToolStripMenuItem";
-            this.ダウンロード期間ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ダウンロード期間ToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.ダウンロード期間ToolStripMenuItem.Text = "ダウンロード期間";
             this.ダウンロード期間ToolStripMenuItem.Click += new System.EventHandler(this.ダウンロード期間ToolStripMenuItem_Click);
             // 
@@ -129,16 +135,41 @@
             this.日本株ToolStripMenuItem.Checked = true;
             this.日本株ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.日本株ToolStripMenuItem.Name = "日本株ToolStripMenuItem";
-            this.日本株ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.日本株ToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.日本株ToolStripMenuItem.Text = "日本株";
             this.日本株ToolStripMenuItem.Click += new System.EventHandler(this.言語ToolStripMenuItem_Click);
             // 
             // 米国株ToolStripMenuItem
             // 
             this.米国株ToolStripMenuItem.Name = "米国株ToolStripMenuItem";
-            this.米国株ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.米国株ToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.米国株ToolStripMenuItem.Text = "米国株";
             this.米国株ToolStripMenuItem.Click += new System.EventHandler(this.言語ToolStripMenuItem_Click);
+            // 
+            // チャートToolStripMenuItem
+            // 
+            this.チャートToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.移動平均ToolStripMenuItem,
+            this.株価の分布ToolStripMenuItem,
+            this.前日比の分布ToolStripMenuItem,
+            this.日当たりの変化量ToolStripMenuItem});
+            this.チャートToolStripMenuItem.Name = "チャートToolStripMenuItem";
+            this.チャートToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.チャートToolStripMenuItem.Text = "チャート";
+            // 
+            // 株価の分布ToolStripMenuItem
+            // 
+            this.株価の分布ToolStripMenuItem.Name = "株価の分布ToolStripMenuItem";
+            this.株価の分布ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.株価の分布ToolStripMenuItem.Text = "株価の分布";
+            this.株価の分布ToolStripMenuItem.Click += new System.EventHandler(this.株価の分布ToolStripMenuItem_Click);
+            // 
+            // 日当たりの変化量ToolStripMenuItem
+            // 
+            this.日当たりの変化量ToolStripMenuItem.Name = "日当たりの変化量ToolStripMenuItem";
+            this.日当たりの変化量ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.日当たりの変化量ToolStripMenuItem.Text = "1日の変化量";
+            this.日当たりの変化量ToolStripMenuItem.Click += new System.EventHandler(this.日の変化量ToolStripMenuItem_Click);
             // 
             // ヘルプToolStripMenuItem
             // 
@@ -210,14 +241,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(531, 301);
             this.dataGridView1.TabIndex = 2;
             // 
-            // backgroundWorker1
-            // 
-            this.backgroundWorker1.WorkerReportsProgress = true;
-            this.backgroundWorker1.WorkerSupportsCancellation = true;
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
-            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -247,6 +270,28 @@
             this.月別ToolStripMenuItem1.Size = new System.Drawing.Size(98, 22);
             this.月別ToolStripMenuItem1.Text = "月別";
             this.月別ToolStripMenuItem1.Click += new System.EventHandler(this.月別ToolStripMenuItem1_Click);
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.WorkerReportsProgress = true;
+            this.backgroundWorker1.WorkerSupportsCancellation = true;
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            // 
+            // 移動平均ToolStripMenuItem
+            // 
+            this.移動平均ToolStripMenuItem.Name = "移動平均ToolStripMenuItem";
+            this.移動平均ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.移動平均ToolStripMenuItem.Text = "移動平均";
+            this.移動平均ToolStripMenuItem.Click += new System.EventHandler(this.移動平均ToolStripMenuItem_Click);
+            // 
+            // 前日比の分布ToolStripMenuItem
+            // 
+            this.前日比の分布ToolStripMenuItem.Name = "前日比の分布ToolStripMenuItem";
+            this.前日比の分布ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.前日比の分布ToolStripMenuItem.Text = "前日比の分布";
+            this.前日比の分布ToolStripMenuItem.Click += new System.EventHandler(this.前日比の分布ToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -294,6 +339,11 @@
         private System.Windows.Forms.ToolStripMenuItem 日別ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 週別ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 月別ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem チャートToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 日当たりの変化量ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 株価の分布ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 移動平均ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 前日比の分布ToolStripMenuItem;
     }
 }
 
