@@ -28,11 +28,12 @@ namespace StockDataDownloader.UI.Chart
                 chart.Titles.Clear();
 
                 var area = new MSChart.ChartArea();
-                area.AxisX.Title = "Date";
+                area.AxisX.Title = "Day Before Ratio";
                 area.AxisY.Title = "Frequency";
 
                 var series = new MSChart.Series();
                 series.ChartType = MSChart.SeriesChartType.Column;
+                series.XValueType = MSChart.ChartValueType.Double;
 
                 var list = ReadData();
 
@@ -42,6 +43,7 @@ namespace StockDataDownloader.UI.Chart
                 for (int i = 0; i < nBuckets; i++)
                 {
                     var mid = (hist[i].LowerBound + hist[i].UpperBound) / 2.0;
+                    mid = Math.Round(mid, 1);
                     series.Points.Add(new MSChart.DataPoint(mid, hist[i].Count));
                 }
 
