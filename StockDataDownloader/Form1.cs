@@ -43,6 +43,7 @@ namespace StockDataDownloader
         {
             try
             {
+                toolStripProgressBar1.Visible = true;
                 toolStripProgressBar1.Value = 0;
 
                 ダウンロードToolStripMenuItem.Enabled = false;
@@ -64,6 +65,8 @@ namespace StockDataDownloader
 
                 var reader = new CompanyReader(COMPANY_FILE_NAME);
                 _companies = reader.GetCompanies();
+
+                toolStripProgressBar1.Visible = false;
 
                 dataGridView1.DataSource = _companies.Where(c => c.Country == GetCheckedCountry()).ToList();
 
@@ -137,10 +140,12 @@ namespace StockDataDownloader
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            MessageBox.Show("completed");
+
+            toolStripProgressBar1.Visible = false;
+
             ダウンロードToolStripMenuItem.Enabled = true;
             contextMenuStrip1.Enabled = true;
-
-            MessageBox.Show("completed");
         }
 
         private void バージョン情報ToolStripMenuItem_Click(object sender, EventArgs e)
