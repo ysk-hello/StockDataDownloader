@@ -1,4 +1,5 @@
 ﻿using StockDataDownloader.IO;
+using StockDataDownloader.IO.Interface;
 using StockDataDownloader.Model;
 using System;
 using System.Collections.Generic;
@@ -11,13 +12,20 @@ namespace StockDataDownloader.ViewModel
 {
     public class DiaryControlView : ViewModelBase
     {
-        public DiaryControlView(Company company)
+        private IDiaryWriter _writer;
+
+        /// <summary>
+        /// テスト要コンストラクター
+        /// </summary>
+        /// <param name="company"></param>
+        /// <param name="reader"></param>
+        public DiaryControlView(Company company, IDiaryReader reader, IDiaryWriter writer)
         {
             try
             {
                 Company = company;
+                _writer = writer;
 
-                var reader = new DiaryCsvReader(Company);
                 Diaries = new BindingList<DiaryData>(
                     reader.ReadAllDiaryData().OrderByDescending(d => d.Date).ToList() ?? new List<DiaryData>());
             }
@@ -27,15 +35,18 @@ namespace StockDataDownloader.ViewModel
             }
         }
 
+        public DiaryControlView(Company company) : this(company, new DiaryCsvReader(company), new DiaryCsvWriter(company))
+        {
+        }
+
         public Company Company { get; private set; }
 
         public BindingList<DiaryData> Diaries { get; set; }
 
         public void Delete(DiaryData diary)
         {
-            var writer = new DiaryCsvWriter(Company);
             // 削除
-            writer.DeleteDiaryData(diary);
+            _writer.DeleteDiaryData(diary);
             Diaries.Remove(diary);
         }
     }

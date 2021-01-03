@@ -43,8 +43,12 @@
             this.日本株ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.米国株ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.チャートToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.移動平均ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.株価の分布ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.前日比の分布ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.日当たりの変化量ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.外部サイトToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.yahooToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ヘルプToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.バージョン情報ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -55,10 +59,6 @@
             this.週別ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.月別ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.移動平均ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.前日比の分布ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.外部サイトToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.yahooToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -160,19 +160,48 @@
             this.チャートToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.チャートToolStripMenuItem.Text = "チャート";
             // 
+            // 移動平均ToolStripMenuItem
+            // 
+            this.移動平均ToolStripMenuItem.Name = "移動平均ToolStripMenuItem";
+            this.移動平均ToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.移動平均ToolStripMenuItem.Text = "移動平均";
+            this.移動平均ToolStripMenuItem.Click += new System.EventHandler(this.移動平均ToolStripMenuItem_Click);
+            // 
             // 株価の分布ToolStripMenuItem
             // 
             this.株価の分布ToolStripMenuItem.Name = "株価の分布ToolStripMenuItem";
-            this.株価の分布ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.株価の分布ToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.株価の分布ToolStripMenuItem.Text = "株価の分布";
             this.株価の分布ToolStripMenuItem.Click += new System.EventHandler(this.株価の分布ToolStripMenuItem_Click);
+            // 
+            // 前日比の分布ToolStripMenuItem
+            // 
+            this.前日比の分布ToolStripMenuItem.Name = "前日比の分布ToolStripMenuItem";
+            this.前日比の分布ToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.前日比の分布ToolStripMenuItem.Text = "前日比の分布";
+            this.前日比の分布ToolStripMenuItem.Click += new System.EventHandler(this.前日比の分布ToolStripMenuItem_Click);
             // 
             // 日当たりの変化量ToolStripMenuItem
             // 
             this.日当たりの変化量ToolStripMenuItem.Name = "日当たりの変化量ToolStripMenuItem";
-            this.日当たりの変化量ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.日当たりの変化量ToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.日当たりの変化量ToolStripMenuItem.Text = "1日の変化量";
             this.日当たりの変化量ToolStripMenuItem.Click += new System.EventHandler(this.日の変化量ToolStripMenuItem_Click);
+            // 
+            // 外部サイトToolStripMenuItem
+            // 
+            this.外部サイトToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.yahooToolStripMenuItem});
+            this.外部サイトToolStripMenuItem.Name = "外部サイトToolStripMenuItem";
+            this.外部サイトToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
+            this.外部サイトToolStripMenuItem.Text = "外部サイト";
+            // 
+            // yahooToolStripMenuItem
+            // 
+            this.yahooToolStripMenuItem.Name = "yahooToolStripMenuItem";
+            this.yahooToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.yahooToolStripMenuItem.Text = "Yahoo";
+            this.yahooToolStripMenuItem.Click += new System.EventHandler(this.yahooToolStripMenuItem_Click);
             // 
             // ヘルプToolStripMenuItem
             // 
@@ -282,36 +311,7 @@
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
-            // 移動平均ToolStripMenuItem
-            // 
-            this.移動平均ToolStripMenuItem.Name = "移動平均ToolStripMenuItem";
-            this.移動平均ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.移動平均ToolStripMenuItem.Text = "移動平均";
-            this.移動平均ToolStripMenuItem.Click += new System.EventHandler(this.移動平均ToolStripMenuItem_Click);
-            // 
-            // 前日比の分布ToolStripMenuItem
-            // 
-            this.前日比の分布ToolStripMenuItem.Name = "前日比の分布ToolStripMenuItem";
-            this.前日比の分布ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.前日比の分布ToolStripMenuItem.Text = "前日比の分布";
-            this.前日比の分布ToolStripMenuItem.Click += new System.EventHandler(this.前日比の分布ToolStripMenuItem_Click);
-            // 
-            // 外部サイトToolStripMenuItem
-            // 
-            this.外部サイトToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.yahooToolStripMenuItem});
-            this.外部サイトToolStripMenuItem.Name = "外部サイトToolStripMenuItem";
-            this.外部サイトToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
-            this.外部サイトToolStripMenuItem.Text = "外部サイト";
-            // 
-            // yahooToolStripMenuItem
-            // 
-            this.yahooToolStripMenuItem.Name = "yahooToolStripMenuItem";
-            this.yahooToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.yahooToolStripMenuItem.Text = "Yahoo";
-            this.yahooToolStripMenuItem.Click += new System.EventHandler(this.yahooToolStripMenuItem_Click);
-            // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -320,7 +320,8 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
