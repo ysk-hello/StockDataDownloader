@@ -10,7 +10,7 @@ using MSChart = System.Windows.Forms.DataVisualization.Charting;
 
 namespace StockDataDownloader.UI.Chart
 {
-    public class MovingAverageLineChartCreator : IChartCreator
+    public class MovingAverageLineChartCreator : IChartCreator, IHairline, IXAxis
     {
         public MovingAverageLineChartCreator(Company company)
         {
@@ -54,6 +54,40 @@ namespace StockDataDownloader.UI.Chart
 
                 throw;
             }
+        }
+
+        public void PlotHairline(MSChart.Chart chart, DiaryData diary)
+        {
+            //chart.ChartAreas[0].CursorX.IsUserEnabled = true;
+            // ↓CursorPositonChangedが発生するようになる
+            //chart.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
+
+            //chart.ChartAreas[0].CursorX.Position = diary.Date.ToOADate();
+            chart.ChartAreas[0].CursorX.SetCursorPosition(diary.Date.ToOADate());
+            //chart.ChartAreas[0].CursorX.Interval = 1E-3;
+        }
+
+        public List<PlotData> GetHairlineData(MSChart.Chart chart)
+        {
+            var x = chart.ChartAreas[0].CursorX.Position;
+            var date = DateTime.FromOADate(x);
+
+            var list = new List<PlotData>();
+            for (int i = 0; i < chart.Series.Count(); i++)
+            {
+                var points = chart.Series[i].Points;
+                if (points.Count() != 0)
+                {
+                    var y = points.FindByValue(x, "X")?.YValues[0] ?? double.NaN;
+                    list.Add(new PlotData(date, chart.Series[i].Name, y));
+                }
+                else
+                {
+                    list.Add(new PlotData(date, chart.Series[i].Name, double.NaN));
+                }
+            }
+
+            return list;
         }
 
         private MSChart.Series CreateSeriesMA(int n)
@@ -108,6 +142,8 @@ namespace StockDataDownloader.UI.Chart
                     throw new NotSupportedException();
             }
 
+            if (!File.Exists(fileName)) return list;
+
             var lines = File.ReadAllLines(fileName).Skip(1);
             foreach (var line in lines)
             {
@@ -127,6 +163,25 @@ namespace StockDataDownloader.UI.Chart
             }
 
             return list;
+        }
+
+        public void ChangeXAxisMinMax(MSChart.Chart chart, int day)
+        {
+            var minDate = DateTime.FromOADate(chart.ChartAreas[0].AxisX.Minimum);
+            var maxDate = DateTime.FromOADate(chart.ChartAreas[0].AxisX.Maximum);
+
+            chart.ChartAreas[0].AxisX.Minimum = minDate.AddDays(day).ToOADate();
+            chart.ChartAreas[0].AxisX.Maximum = maxDate.AddDays(day).ToOADate();
+        }
+
+        public void ChangeXAxisMin(MSChart.Chart chart, int month)
+        {
+            var max = chart.ChartAreas[0].AxisX.Maximum;
+            if (double.IsNaN(max)) return;
+
+            var maxDate = DateTime.FromOADate(max);
+
+            chart.ChartAreas[0].AxisX.Minimum = maxDate.AddMonths(-month).ToOADate();
         }
     }
 }

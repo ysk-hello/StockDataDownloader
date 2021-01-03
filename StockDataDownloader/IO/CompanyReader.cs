@@ -54,8 +54,6 @@ namespace StockDataDownloader.IO
 
                 return null;
             }
-
         }
-
     }
 }

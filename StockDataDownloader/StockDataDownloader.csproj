@@ -65,13 +65,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="IO\CompanyReader.cs" />
+    <Compile Include="IO\DiaryCsvReader.cs" />
+    <Compile Include="IO\DiaryCsvWriter.cs" />
+    <Compile Include="IO\Interface\IDiaryReader.cs" />
+    <Compile Include="IO\Interface\IDiaryWriter.cs" />
     <Compile Include="IO\StockDataCollectorFactory.cs" />
     <Compile Include="IO\UsaStockDataCollector.cs" />
     <Compile Include="IO\Interface\ICompanyReader.cs" />
@@ -79,8 +83,12 @@
     <Compile Include="IO\JpnStockDataCollector.cs" />
     <Compile Include="Model\Company.cs" />
     <Compile Include="Model\Country.cs" />
+    <Compile Include="Model\DiaryData.cs" />
+    <Compile Include="Model\DiaryDataEventArgs.cs" />
     <Compile Include="Model\Frequency.cs" />
     <Compile Include="Model\HistoricalData.cs" />
+    <Compile Include="Model\PlotData.cs" />
+    <Compile Include="Model\XRange.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\ChartForm.cs">
@@ -90,10 +98,46 @@
       <DependentUpon>ChartForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Chart\DailyChangeHistgramCreator.cs" />
+    <Compile Include="UI\Chart\IHairline.cs" />
+    <Compile Include="UI\Chart\IXAxis.cs" />
     <Compile Include="UI\Chart\MovingAverageLineChartCreator.cs" />
     <Compile Include="UI\Chart\DayBeforeRatioHistgramCreator.cs" />
     <Compile Include="UI\Chart\StockDataHistgramCreator.cs" />
     <Compile Include="UI\Chart\IChartCreator.cs" />
+    <Compile Include="UI\Chart\TestChart.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Chart\TimeSeriesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Chart\TimeSeriesControl.Designer.cs">
+      <DependentUpon>TimeSeriesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DiaryChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DiaryChartForm.Designer.cs">
+      <DependentUpon>DiaryChartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DiaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DiaryControl.Designer.cs">
+      <DependentUpon>DiaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DiaryEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DiaryEditForm.Designer.cs">
+      <DependentUpon>DiaryEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\HairlineDataControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\HairlineDataControl.Designer.cs">
+      <DependentUpon>HairlineDataControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\DiaryControlView.cs" />
     <Compile Include="UI\PeriodForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,8 +150,10 @@
     <Compile Include="UI\VersionForm.Designer.cs">
       <DependentUpon>VersionForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ViewModel\DiaryEditViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -121,6 +167,21 @@
     </Compile>
     <EmbeddedResource Include="UI\ChartForm.resx">
       <DependentUpon>ChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Chart\TimeSeriesControl.resx">
+      <DependentUpon>TimeSeriesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DiaryChartForm.resx">
+      <DependentUpon>DiaryChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DiaryControl.resx">
+      <DependentUpon>DiaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DiaryEditForm.resx">
+      <DependentUpon>DiaryEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\HairlineDataControl.resx">
+      <DependentUpon>HairlineDataControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\PeriodForm.resx">
       <DependentUpon>PeriodForm.cs</DependentUpon>
@@ -145,5 +206,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace StockDataDownloader
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private const string COMPANY_FILE_NAME = "company.csv";
 
@@ -22,7 +22,7 @@ namespace StockDataDownloader
 
         private List<Company> _companies;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -211,8 +211,7 @@ namespace StockDataDownloader
 
                 foreach (var company in selected)
                 {
-                    var creator = new MovingAverageLineChartCreator(company);
-                    var form = new ChartForm(creator);
+                    var form = new DiaryChartForm(company);
                     form.Show();
                 }
             }
